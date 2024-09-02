@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
+bool isRunning = false;
 SDL_Window     *window;
 SDL_Renderer   *renderer;
 
@@ -41,7 +42,7 @@ InitializeWindow(void)
 int
 main(void)
 {
-	InitializeWindow();
+        isRunning = InitializeWindow();
 
 	return 0;
 }
