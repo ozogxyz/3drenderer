@@ -102,15 +102,12 @@ void
 drawGrid(uint32_t color)
 {
         for (int y = 0; y < windowHeight; y++) {
-                 for (int x = 0; x < windowWidth / 10; x++) {
-                        colorBuffer[windowWidth * y + 10 * x] = color;
+                 for (int x = 0; x < windowWidth; x++) {
+                         if (x % 10 == 0 || y % 10 == 0) {
+                                 colorBuffer[windowWidth * y + 10 * x] = color;
+                                 colorBuffer[windowWidth * 10 * y + x] = color;
+                         }
                  }
-        }
-
-        for (int y = 0; y < windowHeight / 10; y++) {
-                for (int x = 0; x < windowWidth; x++) {
-                        colorBuffer[windowWidth * 10 * y + x] = color;
-                }
         }
 }
 
