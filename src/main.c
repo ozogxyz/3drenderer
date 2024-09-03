@@ -18,6 +18,13 @@ InitializeWindow(void)
 		fprintf(stderr, "Error initializing SDL.\n");
 		return false;
 	}
+
+        /* Use SDL to query max screen width and height */
+        SDL_DisplayMode displayMode;
+        SDL_GetCurrentDisplayMode(0, &displayMode);
+        windowWidth = displayMode.w;
+        windowHeight = displayMode.h;
+
 	/* Create an SDL window. */
 	window = SDL_CreateWindow(NULL,
 				  SDL_WINDOWPOS_CENTERED,
@@ -39,6 +46,7 @@ InitializeWindow(void)
 		return false;
 	}
 
+        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 	return true;
 }
 
