@@ -109,6 +109,17 @@ drawGrid(uint32_t color)
 }
 
 void
+drawRectangle(int x, int y, int width, int height, uint32_t color)
+{
+        for (int j = 0; j < windowHeight; j++) {
+                for (int i = 0; i < windowWidth; i++) {
+                        if ((j > y && j < y + height) && (i > x && i < x + width))
+                                colorBuffer[windowWidth * j + i] = color;
+                }
+        }
+}
+
+void
 renderColorBuffer(void)
 {
 	SDL_UpdateTexture(colorBufferTexture,
@@ -125,9 +136,10 @@ render(void)
 	SDL_RenderClear(renderer);
 
         drawGrid(0xFF0000FF);
+        drawRectangle(400, 400, 100, 200, 0xFF00FEBC);
 
 	renderColorBuffer();
-	clearColorBuffer(0xFFFFFF00);
+	clearColorBuffer(0xFFFFFFFF);
 
 	SDL_RenderPresent(renderer);
 }
