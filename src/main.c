@@ -20,11 +20,11 @@ InitializeWindow(void)
 		return false;
 	}
 
-        /* Use SDL to query max screen width and height */
-        SDL_DisplayMode displayMode;
-        SDL_GetCurrentDisplayMode(0, &displayMode);
-        windowWidth = displayMode.w;
-        windowHeight = displayMode.h;
+	/* Use SDL to query max screen width and height */
+	SDL_DisplayMode	displayMode;
+	SDL_GetCurrentDisplayMode(0, &displayMode);
+	windowWidth = displayMode.w;
+	windowHeight = displayMode.h;
 
 	/* Create an SDL window. */
 	window = SDL_CreateWindow(NULL,
@@ -47,7 +47,7 @@ InitializeWindow(void)
 		return false;
 	}
 
-        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 	return true;
 }
 
@@ -101,23 +101,23 @@ clearColorBuffer(uint32_t color)
 void
 drawGrid(uint32_t color)
 {
-        for (int y = 0; y < windowHeight; y += 10) {
-                 for (int x = 0; x < windowWidth; x += 10) {
-                         colorBuffer[windowWidth * y + x] = color;
-                 }
-        }
+	for (int y = 0; y < windowHeight; y += 10) {
+		for (int x = 0; x < windowWidth; x += 10) {
+			colorBuffer[windowWidth * y + x] = color;
+		}
+	}
 }
 
 void
 drawRectangle(int x, int y, int width, int height, uint32_t color)
 {
-        for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
-                        int currentX = x + i;
-                        int currentY = y + j;
-                        colorBuffer[(windowWidth * currentY) + currentX] = color;
-                }
-        }
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			int		currentX = x + i;
+			int		currentY = y + j;
+			colorBuffer[(windowWidth * currentY) + currentX] = color;
+		}
+	}
 }
 
 void
@@ -127,7 +127,7 @@ renderColorBuffer(void)
 			  NULL,
 			  colorBuffer,
 			  (int)(windowWidth * sizeof(uint32_t)));
-        SDL_RenderCopy(renderer, colorBufferTexture, NULL, NULL);
+	SDL_RenderCopy(renderer, colorBufferTexture, NULL, NULL);
 }
 
 void
@@ -136,8 +136,8 @@ render(void)
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderClear(renderer);
 
-        drawGrid(0xFF0000FF);
-        drawRectangle(400, 400, 100, 200, 0xFF00FEBC);
+	drawGrid(0xFF0000FF);
+	drawRectangle(400, 400, 100, 200, 0xFF00FEBC);
 
 	renderColorBuffer();
 	clearColorBuffer(0xFFFFFFFF);
