@@ -40,11 +40,18 @@ InitializeWindow(void)
 }
 
 void
+DrawPixel(int x, int y, uint32_t color)
+{
+        if (x < windowWidth && y < windowHeight)
+                colorBuffer[windowWidth * y + x] = color;
+}
+
+void
 ClearColorBuffer(uint32_t color)
 {
 	for (int y = 0; y < windowHeight; y++) {
 		for (int x = 0; x < windowWidth; x++) {
-			colorBuffer[windowWidth * y + x] = color;
+                        DrawPixel(x, y, color);
 		}
 	}
 }
@@ -56,7 +63,7 @@ DrawRectangle(int x, int y, int width, int height, uint32_t color)
 		for (int j = 0; j < height; j++) {
 			int		currentX = x + i;
 			int		currentY = y + j;
-			colorBuffer[(windowWidth * currentY) + currentX] = color;
+                        DrawPixel(currentX, currentY, color);
 		}
 	}
 }
@@ -66,7 +73,7 @@ DrawGrid(uint32_t color)
 {
 	for (int y = 0; y < windowHeight; y += 10) {
 		for (int x = 0; x < windowWidth; x += 10) {
-			colorBuffer[windowWidth * y + x] = color;
+                        DrawPixel(x, y, color);
 		}
 	}
 }
