@@ -11,6 +11,7 @@ SDL_Window     *window = NULL;
 int		windowHeight = 600;
 int		windowWidth = 800;
 
+
 bool
 InitializeWindow(void)
 {
@@ -61,7 +62,6 @@ setup(void)
 					       windowHeight);
 	if (!colorBuffer)
 		fprintf(stderr, "Error allocating color buffer.\n");
-
 }
 
 void
@@ -97,6 +97,23 @@ clearColorBuffer(uint32_t color)
 	}
 }
 
+
+void
+drawGrid(uint32_t color)
+{
+        for (int y = 0; y < windowHeight; y++) {
+                 for (int x = 0; x < windowWidth / 10; x++) {
+                        colorBuffer[windowWidth * y + 10 * x] = color;
+                 }
+        }
+
+        for (int y = 0; y < windowHeight / 10; y++) {
+                for (int x = 0; x < windowWidth; x++) {
+                        colorBuffer[windowWidth * 10 * y + x] = color;
+                }
+        }
+}
+
 void
 renderColorBuffer(void)
 {
@@ -112,8 +129,12 @@ render(void)
 {
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderClear(renderer);
+
+        drawGrid(0xFF0000FF);
+
 	renderColorBuffer();
 	clearColorBuffer(0xFFFFFF00);
+
 	SDL_RenderPresent(renderer);
 }
 
