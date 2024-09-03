@@ -111,10 +111,9 @@ drawGrid(uint32_t color)
 void
 drawRectangle(int x, int y, int width, int height, uint32_t color)
 {
-        for (int j = 0; j < windowHeight; j++) {
-                for (int i = 0; i < windowWidth; i++) {
-                        if ((j > y && j < y + height) && (i > x && i < x + width))
-                                colorBuffer[windowWidth * j + i] = color;
+        for (int j = y; j < y + height; j++) {
+                for (int i = x; i < x + width; i++) {
+                        colorBuffer[windowWidth * j + i] = color;
                 }
         }
 }
