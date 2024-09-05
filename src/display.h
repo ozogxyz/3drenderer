@@ -17,7 +17,7 @@ int		windowWidth;
 
 /* Function prototypes */
 bool		InitializeWindow(void);
-void            DrawPixel(int x, int y, uint32_t color);
+void		DrawPixel(int x, int y, uint32_t color);
 void		DrawRectangle(int x, int y, int width, int height, uint32_t color);
 void		DrawGrid(uint32_t color);
 void		RenderColorBuffer(void);
