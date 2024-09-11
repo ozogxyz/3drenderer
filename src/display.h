@@ -8,20 +8,20 @@
 
 
 /* Variables and global declaration */
-uint32_t       *colorBuffer;
-SDL_Texture    *colorBufferTexture;
+uint32_t       *color_buffer;
+SDL_Texture    *color_buffer_texture;
 SDL_Renderer   *renderer;
 SDL_Window     *window;
-int		windowHeight;
-int		windowWidth;
+int		window_height;
+int		window_width;
 
 /* Function prototypes */
-bool		InitializeWindow(void);
-void		DrawPixel(int x, int y, uint32_t color);
-void		DrawRectangle(int x, int y, int width, int height, uint32_t color);
-void		DrawGrid(uint32_t color);
-void		RenderColorBuffer(void);
-void		ClearColorBuffer(uint32_t color);
-void		DestroyWindow(void);
+bool		initialize_window(void);
+void		draw_pixel(int x, int y, uint32_t color);
+void		draw_rectangle(int x, int y, int width, int height, uint32_t color);
+void		draw_grid(uint32_t color);
+void		render_color_buffer(void);
+void		clear_color_buffer(uint32_t color);
+void		destroy_window(void);
 
 #endif
